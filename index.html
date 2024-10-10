@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中和滴定シミュレーション</title>
+    <style>
+        #container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .beaker {
+            border: 1px solid #000;
+            padding: 10px;
+            width: 150px;
+            height: 200px;
+            background-color: #f0f0f0;
+            margin: 10px;
+            position: relative;
+        }
+        .liquid-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>中和滴定シミュレーション</h1>
+
+    <div>
+        <label>滴下対象のビーカー:</label>
+        <select id="selectedBeaker">
+            <option value="1">ビーカー 1</option>
+            <option value="2">ビーカー 2</option>
+            <option value="3">ビーカー 3</option>
+        </select>
+    </div>
+
+    <div id="container">
+        <div class="beaker" id="beaker1">ビーカー 1<div class="liquid-level" id="liquid1" style="height: 0;"></div></div>
+        <div class="beaker" id="beaker2">ビーカー 2<div class="liquid-level" id="liquid2" style="height: 0;"></div></div>
+        <div class="beaker" id="beaker3">ビーカー 3<div class="liquid-level" id="liquid3" style="height: 0;"></div></div>
+    </div>
+
+    <button onclick="addBeaker()">ビーカーを追加</button>
+
+    <h2>試薬を滴下</h2>
+    <button onclick="addDrop('A')">試薬Aを滴下</button>
+    <button onclick="addDrop('B')">試薬Bを滴下</button>
+    <button onclick="addDrop('C')">試薬Cを滴下</button>
+    <button onclick="addDrop('D')">試薬Dを滴下</button>
+    <button onclick="addDrop('E')">試薬Eを滴下</button>
+    <button onclick="addPhenolphthalein()">フェノールフタレインを追加</button>
+
+    <h2>操作</h2>
+    <button onclick="resetBeaker()">選択中のビーカーをリセット</button>
+    <button onclick="undoLastAction()">ひとつ前に戻る</button>
+
+    <h2>答え合わせ</h2>
+    <button onclick="revealReagents()">試薬A～Eの内容を表示</button>
+    <div id="reagentAnswers"></div>
+
+    <h2>履歴</h2>
+    <button onclick="showHistory()">選択中のビーカーの履歴を見る</button>
+    <div id="history"></div>
+
+    <script src="simulation.js"></script>
+</body>
+</html>
